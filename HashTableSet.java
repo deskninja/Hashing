@@ -60,7 +60,7 @@ public class HashTableSet<E> {
    * @param hashTableSize size of hash table
    */
   public HashTableSet(int hashTableSize) {
-    this.size = hashTableSize;
+    this.buckets = hashTableSize;
     clear();
   }
 
