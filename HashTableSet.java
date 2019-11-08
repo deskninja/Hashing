@@ -1,11 +1,11 @@
-package assignment08;
+package cs2420;
 
-import components.set.Set;
+import components.set.*;
 
 /**
  * Hash Table based implementation of a Set.
  * 
- * @author Swaroop Joshi
+ * @author Garrett Keefe
  *
  * @param <E> type of the elements of this set
  */
@@ -15,7 +15,7 @@ public class HashTableSet<E> {
    * Private members -----
    */
   private static final int DEFAULT_NUM_BUCKETS = 101;
-  private Set<E>[] hashTable;
+  private SetOnArrayList<Set<E>> hashTable;
   private int size;
 
   /*
@@ -31,8 +31,11 @@ public class HashTableSet<E> {
    */
   public static int mod(int a, int b) {
     assert b > 0 : "Violation of: b > 0";
-    if(a < 0)
-      
+    int r = a-(b*(a/b));
+    if(r < 0) {
+    	r = b + r;
+    }
+    return r; // TODO implement this method
   }
 
   /*
@@ -42,6 +45,12 @@ public class HashTableSet<E> {
    * No-argument constructor, resulting in a hash table of default size.
    */
   public HashTableSet() {
+	  this.hashTable = new SetOnArrayList<Set<E>>();
+	  for(int i = 0; i < DEFAULT_NUM_BUCKETS; i++) {
+		  Set<E> x = new SetOnArrayList<E>();
+		  this.hashTable.add(x);
+	  }
+	  this.size = DEFAULT_NUM_BUCKETS;
     // TODO implement this method
   }
 
@@ -51,6 +60,12 @@ public class HashTableSet<E> {
    * @param hashTableSize size of hash table
    */
   public HashTableSet(int hashTableSize) {
+	  this.hashTable = new SetOnArrayList<Set<E>>();
+	  for(int i = 0; i < hashTableSize; i++) {
+		  Set<E> x = new SetOnArrayList<E>();
+		  this.hashTable.add(x);
+	  }
+	  this.size = hashTableSize;
     // TODO implement this method
   }
 
@@ -70,6 +85,8 @@ public class HashTableSet<E> {
   public void add(E x) {
     assert x != null : "Violation of: x is not null";
     assert !this.contains(x) : "Violation of: x is not in this";
+    int hashNum = x.hashCode();
+    hashNum = HashTableSet.mod(hashNum, this.size);
 
     // TODO implement this method
   }
@@ -110,7 +127,7 @@ public class HashTableSet<E> {
    * @return size of this set
    */
   public int size() {
-    return 0; // TODO implement this method
+    return this.size; // TODO implement this method
   }
 
   /**
