@@ -4,8 +4,8 @@ import components.set.*;
 
 /**
  * Hash Table based implementation of a Set.
- * 
- * @author Garrett Keefe
+ *
+ * @author Garrett Keefe and Joshua Wells
  *
  * @param <E> type of the elements of this set
  */
@@ -33,7 +33,7 @@ public class HashTableSet<E> {
     assert b > 0 : "Violation of: b > 0";
     int r = a-(b*(a/b));
     if(r < 0) {
-    	r = b + r;
+      r = b + r;
     }
     return r; // TODO implement this method
   }
@@ -45,13 +45,7 @@ public class HashTableSet<E> {
    * No-argument constructor, resulting in a hash table of default size.
    */
   public HashTableSet() {
-	  this.hashTable = new SetOnArrayList<Set<E>>();
-	  for(int i = 0; i < DEFAULT_NUM_BUCKETS; i++) {
-		  Set<E> x = new SetOnArrayList<E>();
-		  this.hashTable.add(x);
-	  }
-	  this.size = DEFAULT_NUM_BUCKETS;
-    // TODO implement this method
+    this(DEFAULT_NUM_BUCKETS);
   }
 
   /**
@@ -60,12 +54,12 @@ public class HashTableSet<E> {
    * @param hashTableSize size of hash table
    */
   public HashTableSet(int hashTableSize) {
-	  this.hashTable = new SetOnArrayList<Set<E>>();
-	  for(int i = 0; i < hashTableSize; i++) {
-		  Set<E> x = new SetOnArrayList<E>();
-		  this.hashTable.add(x);
-	  }
-	  this.size = hashTableSize;
+    this.hashTable = new SetOnArrayList<Set<E>>();
+    for(int i = 0; i < hashTableSize; i++) {
+      Set<E> x = new SetOnArrayList<E>();
+      this.hashTable.add(x);
+    }
+    this.size = hashTableSize;
     // TODO implement this method
   }
 
@@ -76,11 +70,11 @@ public class HashTableSet<E> {
    * Adds {@code x} to {@code this}.
    *
    * @param x the element to be added
-   * 
+   *
    * @modifies {@code this}
-   * 
+   *
    * @requires {@code x} is not in {@code this}
-   * 
+   *
    */
   public void add(E x) {
     assert x != null : "Violation of: x is not null";
@@ -97,9 +91,9 @@ public class HashTableSet<E> {
    * @param x the element to be removed
    *
    * @modifies {@code this}
-   * 
+   *
    * @requires {@code x} is in {@code this}
-   * 
+   *
    */
   public void remove(E x) {
     assert x != null : "Violation of: x is not null";
@@ -113,7 +107,7 @@ public class HashTableSet<E> {
    *
    * @param x the element to be checked
    * @return true iff element is in {@code this}
-   * 
+   *
    */
   public boolean contains(E x) {
     assert x != null : "Violation of: x is not null";
@@ -123,7 +117,7 @@ public class HashTableSet<E> {
 
   /**
    * Reports the number of elements in {@code this}.
-   * 
+   *
    * @return size of this set
    */
   public int size() {
@@ -154,7 +148,7 @@ public class HashTableSet<E> {
    */
   /**
    * Returns the number of elements in the specified bucket.
-   * 
+   *
    * @param bucketIndex index of the bucket requested
    * @requires 0 <= bucketIndex < numBuckets()
    */
@@ -164,7 +158,7 @@ public class HashTableSet<E> {
 
   /**
    * Reports the number of buckets in this hashtable.
-   * 
+   *
    * @return number of buckets
    */
   public int numBuckets() {
