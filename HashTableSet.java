@@ -1,4 +1,4 @@
-package assignment08;
+package cs2420;
 
 import components.set.*;
 
@@ -41,7 +41,7 @@ public class HashTableSet<E> {
     if(r < 0) {
       r = b + r;
     }
-    return r; // TODO implement this method
+    return r;
   }
 
   /*
@@ -82,6 +82,7 @@ public class HashTableSet<E> {
     assert !this.contains(x) : "Violation of: x is not in this";
     int bucketIndex = hashNum(x);
     this.hashTable.get(bucketIndex).add(x);
+    this.size++;
   }
 
   /**
@@ -99,6 +100,7 @@ public class HashTableSet<E> {
     assert this.contains(x) : "Violation of: x is in this";
     int bucketIndex = hashNum(x);
     this.hashTable.get(bucketIndex).remove(x);
+    this.size--;
   }
 
   /**
@@ -120,7 +122,7 @@ public class HashTableSet<E> {
    * @return size of this set
    */
   public int size() {
-    return this.size; // TODO implement this method
+    return this.size;
   }
 
   /**
