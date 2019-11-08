@@ -3,6 +3,7 @@ package cs2420;
 import components.set.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Hash Table based implementation of a Set.
@@ -21,9 +22,11 @@ public class HashTableSet<E> {
   private int size;
   private int buckets;
 
-  /*
-   * Helper methods
-   */
+  private int hashNum(E x) {
+    int hashNum = x.hashCode();
+    return mod(hashNum, this.numBuckets());
+  }
+
   /**
    * Computes {@code a} mod {@code b} as % should have been defined to work.
    *
@@ -77,10 +80,8 @@ public class HashTableSet<E> {
   public void add(E x) {
     assert x != null : "Violation of: x is not null";
     assert !this.contains(x) : "Violation of: x is not in this";
-    int hashNum = x.hashCode();
-    hashNum = HashTableSet.mod(hashNum, this.size);
-
-    // TODO implement this method
+    int bucketIndex = hashNum(x);
+    this.hashTable.get(bucketIndex).add(x);
   }
 
   /**
@@ -96,7 +97,8 @@ public class HashTableSet<E> {
   public void remove(E x) {
     assert x != null : "Violation of: x is not null";
     assert this.contains(x) : "Violation of: x is in this";
-
+    int bucketIndex = hashNum(x);
+    this.hashTable.get(bucketIndex).remove(x);
   }
 
   /**
@@ -108,8 +110,8 @@ public class HashTableSet<E> {
    */
   public boolean contains(E x) {
     assert x != null : "Violation of: x is not null";
-    
-    return false;
+    int bucketIndex = hashNum(x);
+    return this.hashTable.get(bucketIndex).contains(x);
   }
 
   /**
@@ -142,7 +144,18 @@ public class HashTableSet<E> {
    */
   @Override
   public String toString() {
-    return ""; // TODO implement this method
+    StringBuilder s = new StringBuilder();
+    s.append("{");
+    for (int i = 0; i < numBuckets(); i++) {
+      Iterator it = this.hashTable.get(i).iterator();
+      while(it.hasNext()){
+        s.append(it.next());
+        if (!it.hasNext() || !(i == numBuckets() - 1))
+          s.append(",");
+      }
+    }
+    s.append("}");
+    return s.toString();
   }
 
   /*
@@ -155,7 +168,7 @@ public class HashTableSet<E> {
    * @requires 0 <= bucketIndex < numBuckets()
    */
   public int bucketSize(int bucketIndex) {
-    return 0; // TODO implement this method
+    return this.hashTable.get(bucketIndex).size();
   }
 
   /**
