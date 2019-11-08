@@ -149,9 +149,13 @@ public class HashTableSet<E> {
     for (int i = 0; i < numBuckets(); i++) {
       Iterator it = this.hashTable.get(i).iterator();
       while(it.hasNext()){
+    	if(s.length() > 1 && s.charAt(s.length()-1) != ',') {
+    		s.append(",");
+    	}
         s.append(it.next());
-        if (!it.hasNext() || !(i == numBuckets() - 1))
-          s.append(",");
+        if(it.hasNext()) {
+        	s.append(",");
+        }
       }
     }
     s.append("}");
