@@ -2,6 +2,8 @@ package cs2420;
 
 import components.set.*;
 
+import java.util.ArrayList;
+
 /**
  * Hash Table based implementation of a Set.
  *
@@ -15,8 +17,9 @@ public class HashTableSet<E> {
    * Private members -----
    */
   private static final int DEFAULT_NUM_BUCKETS = 101;
-  private SetOnArrayList<Set<E>> hashTable;
+  private ArrayList<Set<E>> hashTable;
   private int size;
+  private int buckets;
 
   /*
    * Helper methods
@@ -54,13 +57,8 @@ public class HashTableSet<E> {
    * @param hashTableSize size of hash table
    */
   public HashTableSet(int hashTableSize) {
-    this.hashTable = new SetOnArrayList<Set<E>>();
-    for(int i = 0; i < hashTableSize; i++) {
-      Set<E> x = new SetOnArrayList<E>();
-      this.hashTable.add(x);
-    }
     this.size = hashTableSize;
-    // TODO implement this method
+    clear();
   }
 
   /*
@@ -99,7 +97,6 @@ public class HashTableSet<E> {
     assert x != null : "Violation of: x is not null";
     assert this.contains(x) : "Violation of: x is in this";
 
-    // TODO implement this method
   }
 
   /**
@@ -111,8 +108,8 @@ public class HashTableSet<E> {
    */
   public boolean contains(E x) {
     assert x != null : "Violation of: x is not null";
-
-    return false; // TODO implement this method
+    
+    return false;
   }
 
   /**
@@ -128,7 +125,12 @@ public class HashTableSet<E> {
    * Removes all the elements in {@code this}.
    */
   public void clear() {
-    // TODO implement this method
+    this.hashTable = new ArrayList<Set<E>>();
+    for(int i = 0; i < this.numBuckets(); i++) {
+      Set<E> x = new SetOnArrayList<E>();
+      this.hashTable.add(x);
+    }
+    this.size = 0;
   }
 
   /*
@@ -162,7 +164,7 @@ public class HashTableSet<E> {
    * @return number of buckets
    */
   public int numBuckets() {
-    return 0; // TODO implement this method
+    return this.buckets;
   }
 
 }
