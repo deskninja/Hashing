@@ -32,17 +32,21 @@ public class Timing {
         return table;
     }
 
-    private long getContainsTime(HashTableSet<Integer> x, int times) {
+    private long getContainsTime(HashTableSet<Integer> x) {
         Random rand = new Random();
-        long totalTime = 0L;
-        for (int i = 0; i < times; i++) {
-            long start = System.nanoTime();
-            x.contains(rand.nextInt());
-            long stop = System.nanoTime();
-            totalTime += stop - start;
+        long start = System.nanoTime();
+        x.contains(rand.nextInt());
+        long stop = System.nanoTime();
+
+        return stop - start;
+    }
+
+    private long averageTime(HashTableSet<Integer> x, long times){
+        long average = 0L;
+        for (int i = 0; i < times; i++){
+            average += getContainsTime(x);
         }
-        totalTime /= times;
-        return totalTime;
+        return average / times;
     }
 
     @Test
@@ -51,7 +55,7 @@ public class Timing {
                 tableSize) {
             HashTableSet<Integer> x = createTable(num);
             System.out.println("The time for " + num + " sized table was: ");
-            System.out.println((getContainsTime(x, 50)));
+            System.out.println((averageTime(x, 100)));
         }
     }
 
