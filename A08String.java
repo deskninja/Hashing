@@ -1,4 +1,4 @@
-package assignment08;
+package cs2420;
 
 public class A08String {
   private String str;
@@ -30,6 +30,12 @@ public class A08String {
 
   @Override
   public int hashCode() {
-    return str.length();
+	  int sum = 0;
+	  char[] x = str.toCharArray();
+	  for(int i = 0 ; i < x.length; i++) {
+		  sum = sum + Integer.valueOf(x[i]);
+	  }
+	  sum += x.hashCode();
+    return sum * str.length();
   }
 }
