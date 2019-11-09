@@ -1,5 +1,6 @@
-package cs2420;
+package assignment08;
 
+import components.list.SinglyLinkedList;
 import components.set.*;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class HashTableSet<E> {
    * Private members -----
    */
   private static final int DEFAULT_NUM_BUCKETS = 101;
-  private ArrayList<Set<E>> hashTable;
+  private ArrayList<SinglyLinkedList<E>> hashTable;
   private int size;
   private int buckets;
 
@@ -98,8 +99,17 @@ public class HashTableSet<E> {
   public void remove(E x) {
     assert x != null : "Violation of: x is not null";
     assert this.contains(x) : "Violation of: x is in this";
+
     int bucketIndex = hashNum(x);
-    this.hashTable.get(bucketIndex).remove(x);
+    SinglyLinkedList<E> temp = this.hashTable.get(bucketIndex);
+    Iterator it = temp.iterator();
+    boolean removed = false;
+    int index = 0;
+    while(!removed){
+      if(it.next().equals(x))
+        this.hashTable.get(bucketIndex).remove(index);
+      index++;
+    }
     this.size--;
   }
 
@@ -113,7 +123,13 @@ public class HashTableSet<E> {
   public boolean contains(E x) {
     assert x != null : "Violation of: x is not null";
     int bucketIndex = hashNum(x);
-    return this.hashTable.get(bucketIndex).contains(x);
+    SinglyLinkedList<E> temp = this.hashTable.get(bucketIndex);
+    Iterator it = temp.iterator();
+    while(it.hasNext()){
+      if(it.next().equals(x))
+        return true;
+    }
+    return false;
   }
 
   /**
@@ -129,9 +145,9 @@ public class HashTableSet<E> {
    * Removes all the elements in {@code this}.
    */
   public void clear() {
-    this.hashTable = new ArrayList<Set<E>>();
+    this.hashTable = new ArrayList<SinglyLinkedList<E>>();
     for(int i = 0; i < this.numBuckets(); i++) {
-      Set<E> x = new SetOnArrayList<E>();
+      SinglyLinkedList<E> x = new SinglyLinkedList<>();
       this.hashTable.add(x);
     }
     this.size = 0;
@@ -151,12 +167,12 @@ public class HashTableSet<E> {
     for (int i = 0; i < numBuckets(); i++) {
       Iterator it = this.hashTable.get(i).iterator();
       while(it.hasNext()){
-    	if(s.length() > 1 && s.charAt(s.length()-1) != ',') {
-    		s.append(",");
-    	}
+        if(s.length() > 1 && s.charAt(s.length()-1) != ',') {
+          s.append(",");
+        }
         s.append(it.next());
         if(it.hasNext()) {
-        	s.append(",");
+          s.append(",");
         }
       }
     }
