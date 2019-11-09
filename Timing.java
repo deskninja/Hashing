@@ -32,6 +32,16 @@ public class Timing {
         return table;
     }
 
+    private HashTableSet<Integer> createTable(int size, int buckets){
+        table = new HashTableSet<Integer>(buckets);
+        for(int i = 0; i < size; i++){
+            //distinct integer {int i} is added to the hashTable
+            itemInTable = (i);
+            table.add(itemInTable); //add the integer
+        }
+        return table;
+    }
+
     private long getContainsTime(HashTableSet<Integer> x) {
         Random rand = new Random();
         long start = System.nanoTime();
@@ -54,6 +64,13 @@ public class Timing {
         for (int num :
                 tableSize) {
             HashTableSet<Integer> x = createTable(num);
+            System.out.println("The time for " + num + " sized table was: ");
+            System.out.println((averageTime(x, 100)));
+        }
+
+        for (int num :
+                tableSize) {
+            HashTableSet<Integer> x = createTable(num, 1000);
             System.out.println("The time for " + num + " sized table was: ");
             System.out.println((averageTime(x, 100)));
         }
