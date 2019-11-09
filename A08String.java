@@ -1,4 +1,4 @@
-package cs2420;
+package assignment08;
 
 public class A08String {
   private String str;
