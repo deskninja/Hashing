@@ -31,22 +31,27 @@ public class Timing {
         }
         return table;
     }
-    
-    private long getContainsTime(HashTableSet<Integer> x) {
-    	Random rand = new Random();
-    	long start = System.nanoTime();
-        x.contains(rand.nextInt());
-        long stop = System.nanoTime();
-        return stop - start;
+
+    private long getContainsTime(HashTableSet<Integer> x, int times) {
+        Random rand = new Random();
+        long totalTime = 0L;
+        for (int i = 0; i < times; i++) {
+            long start = System.nanoTime();
+            x.contains(rand.nextInt());
+            long stop = System.nanoTime();
+            totalTime += stop - start;
+        }
+        totalTime /= times;
+        return totalTime;
     }
 
     @Test
     public void times(){
         for (int num :
                 tableSize) {
-        	HashTableSet<Integer> x = createTable(num);
+            HashTableSet<Integer> x = createTable(num);
             System.out.println("The time for " + num + " sized table was: ");
-            System.out.println((getContainsTime(x)+getContainsTime(x)+getContainsTime(x)+getContainsTime(x))/4);
+            System.out.println((getContainsTime(x, 50)));
         }
     }
 
