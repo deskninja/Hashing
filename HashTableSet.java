@@ -1,4 +1,4 @@
-package cs2420;
+package assignment08;
 
 import components.list.SinglyLinkedList;
 import components.set.*;
