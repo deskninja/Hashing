@@ -1,4 +1,4 @@
-package assignment08;
+package cs2420;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -8,32 +8,34 @@ import java.util.Random;
 
 public class Timing {
 
-    private HashTableSet<A08String> table;
+    private HashTableSet<Integer> table;
     private ArrayList<Integer> tableSize;
-    private A08String itemInTable;
+    private int itemInTable;
 
     @Before
     public void setUp(){
         table = new HashTableSet<>();
         tableSize = new ArrayList<Integer>();
-        itemInTable = new A08String();
-        for (int i = 0; i < 8; i++) { //from 10^1 to 10^8
+        for (int i = 0; i < 6; i++) { //from 10^1 to 10^6
             tableSize.add((int) (Math.pow(10, i + 1)));
         }
 
     }
 
-    private long createTable(int size){
-        table.clear();
-        Random rand = new Random();
-        A08String element = new A08String();
+    private HashTableSet<Integer> createTable(int size){
+        table = new HashTableSet<Integer>();
         for(int i = 0; i < size; i++){
-            //two random ints chained together such that the table is unlikely to contain the element
-            itemInTable = new A08String(String.valueOf(rand.nextInt()) + String.valueOf(rand.nextInt()));
-            table.add(itemInTable); //add a new number as a A08String
+            //distinct integer {int i} is added to the hashTable
+            itemInTable = (i);
+            table.add(itemInTable); //add the integer
         }
-        long start = System.nanoTime();
-        table.contains(itemInTable);
+        return table;
+    }
+    
+    private long getContainsTime(HashTableSet<Integer> x) {
+    	Random rand = new Random();
+    	long start = System.nanoTime();
+        x.contains(rand.nextInt());
         long stop = System.nanoTime();
         return stop - start;
     }
@@ -42,8 +44,9 @@ public class Timing {
     public void times(){
         for (int num :
                 tableSize) {
+        	HashTableSet<Integer> x = createTable(num);
             System.out.println("The time for " + num + " sized table was: ");
-            System.out.println(createTable(num));
+            System.out.println((getContainsTime(x)+getContainsTime(x)+getContainsTime(x)+getContainsTime(x))/4);
         }
     }
 

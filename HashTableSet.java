@@ -1,4 +1,4 @@
-package assignment08;
+package cs2420;
 
 import components.list.SinglyLinkedList;
 import components.set.*;
@@ -106,8 +106,10 @@ public class HashTableSet<E> {
     boolean removed = false;
     int index = 0;
     while(!removed){
-      if(it.next().equals(x))
+      if(it.next().equals(x)) {
         this.hashTable.get(bucketIndex).remove(index);
+        removed = true;
+      }
       index++;
     }
     this.size--;
