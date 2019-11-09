@@ -1,4 +1,4 @@
-package cs2420;
+package assignment08;
 
 import components.simplereader.SimpleReader;
 import components.simplereader.SimpleReader1L;
