@@ -1,5 +1,8 @@
 package assignment08;
 
+/**
+ * @author Garrett Keefe and Joshua Wells
+ */
 public class A08String {
   /**
    * holds the String data
