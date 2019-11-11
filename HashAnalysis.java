@@ -1,5 +1,12 @@
 package assignment08;
 
+/**
+ * Hashing Anaylsis File
+ * 
+ * Authors Garrett Keefe & Joshua Wells
+ * 
+ */
+
 import components.simplereader.SimpleReader;
 import components.simplereader.SimpleReader1L;
 import components.simplewriter.SimpleWriter;
@@ -8,7 +15,7 @@ import components.simplewriter.SimpleWriter1L;
 public class HashAnalysis {
   public static void main(String[] args) {
     SimpleWriter out = new SimpleWriter1L();
-
+    // modified bucket count, the new number is a prime number which benefits hashing distribution.
     final int numBuckets = 31;
     HashTableSet<A08String> hash = new HashTableSet<>(numBuckets);
 
