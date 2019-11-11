@@ -8,7 +8,7 @@ import components.simplewriter.SimpleWriter1L;
 /**
  * Hashing Analysis File
  *
- * Authors Garrett Keefe & Joshua Wells
+ * @author Garrett Keefe & Joshua Wells
  *
  */
 public class HashAnalysis {
