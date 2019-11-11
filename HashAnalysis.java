@@ -1,7 +1,7 @@
 package assignment08;
 
 /**
- * Hashing Anaylsis File
+ * Hashing Analysis File
  * 
  * Authors Garrett Keefe & Joshua Wells
  * 
