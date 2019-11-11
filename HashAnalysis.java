@@ -1,17 +1,16 @@
 package assignment08;
 
-/**
- * Hashing Analysis File
- * 
- * Authors Garrett Keefe & Joshua Wells
- * 
- */
-
 import components.simplereader.SimpleReader;
 import components.simplereader.SimpleReader1L;
 import components.simplewriter.SimpleWriter;
 import components.simplewriter.SimpleWriter1L;
 
+/**
+ * Hashing Analysis File
+ *
+ * Authors Garrett Keefe & Joshua Wells
+ *
+ */
 public class HashAnalysis {
   public static void main(String[] args) {
     SimpleWriter out = new SimpleWriter1L();
@@ -36,14 +35,14 @@ public class HashAnalysis {
     out.println("------\t----\t-----");
     for (int i = 0; i < hash.numBuckets(); i++) {
       out.println(
-          i + "\t" + hash.bucketSize(i) + "\t" + stars(hash.bucketSize(i)));
+              i + "\t" + hash.bucketSize(i) + "\t" + stars(hash.bucketSize(i)));
     }
     out.close();
   }
 
   /**
    * Returns a string with the given number of asterisks.
-   * 
+   *
    * @param count number of asterisks
    * @return strings with the given number of asterisks
    */
