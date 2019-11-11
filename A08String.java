@@ -1,12 +1,22 @@
 package assignment08;
 
 public class A08String {
+  /**
+   * holds the String data
+   */
   private String str;
 
+  /**
+   * no argument constructor
+   */
   public A08String() {
     this.str = "";
   }
 
+  /**
+   * constructor that stores str in this
+   * @param str String to be stored
+   */
   public A08String(String str) {
     this.str = str;
   }
@@ -30,12 +40,12 @@ public class A08String {
 
   @Override
   public int hashCode() {
-	  int sum = 0;
-	  char[] x = str.toCharArray();
-	  for(int i = 0 ; i < x.length; i++) {
-		  sum = sum + Integer.valueOf(x[i]);
-	  }
-	  sum += x.hashCode();
+    int sum = 0;
+    char[] x = str.toCharArray();
+    for(int i = 0 ; i < x.length; i++) {
+      sum = sum + Integer.valueOf(x[i]);
+    }
+    sum += x.hashCode();
     return sum * str.length();
   }
 }
