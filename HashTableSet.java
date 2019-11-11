@@ -15,14 +15,31 @@ import java.util.Iterator;
  */
 public class HashTableSet<E> {
 
-  /*
-   * Private members -----
+  /**
+   * default number of buckets in this
    */
   private static final int DEFAULT_NUM_BUCKETS = 101;
+
+  /**
+   * hash table data
+   */
   private ArrayList<SinglyLinkedList<E>> hashTable;
+
+  /**
+   * number of elements in the hash table
+   */
   private int size;
+
+  /**
+   * number of buckets in the hash table
+   */
   private int buckets;
 
+  /**
+   * takes the new element and returns the hash number
+   * @param x E element to hash
+   * @return int the hash number
+   */
   private int hashNum(E x) {
     int hashNum = x.hashCode();
     return mod(hashNum, this.numBuckets());
@@ -45,9 +62,6 @@ public class HashTableSet<E> {
     return r;
   }
 
-  /*
-   * Constructors -----
-   */
   /**
    * No-argument constructor, resulting in a hash table of default size.
    */
@@ -65,9 +79,6 @@ public class HashTableSet<E> {
     clear();
   }
 
-  /*
-   * Set methods -----
-   */
   /**
    * Adds {@code x} to {@code this}.
    *
@@ -155,9 +166,6 @@ public class HashTableSet<E> {
     this.size = 0;
   }
 
-  /*
-   * Methods inherited from Object
-   */
   /**
    * String representation of the hash table. Elements in bucket 0, followed by
    * those in bucket 1, and so on, separated by commas and enclosed in {..}.
@@ -181,10 +189,7 @@ public class HashTableSet<E> {
     s.append("}");
     return s.toString();
   }
-
-  /*
-   * Other methods specific to hash tables; for testing/performance purposes only
-   */
+  
   /**
    * Returns the number of elements in the specified bucket.
    *
